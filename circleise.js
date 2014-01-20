@@ -114,7 +114,7 @@ $.fn.circleise_and_decircleise = function(options) {
   $('.circleise_innerdiv').on(settings.circleise_event, circleise_worker);
   $('.circleise_innerdiv').on(settings.decircleise_event, decircleise_worker);
 
-  innerdiv.trigger('mouseout');
+  innerdiv.trigger(settings.circleise_event);
 
   return $(this);
 };

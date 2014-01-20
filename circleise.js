@@ -1,4 +1,4 @@
-var circleise = function() {
+var circleise_worker = function() {
   var innerdiv = $(this);
   var outerdiv = innerdiv.parent('.circleise_outerdiv');
   var image = innerdiv.children('.circleise_image');
@@ -44,7 +44,7 @@ var circleise = function() {
   }  
 }
 
-var de_circleise = function() {
+var decircleise_worker = function() {
   var innerdiv = $(this);
   var outerdiv = innerdiv.parent('.circleise_outerdiv');
   var image = innerdiv.children('.circleise_image');
@@ -69,44 +69,52 @@ var de_circleise = function() {
   });
 }
 
-$(document).ready(function() {
-  $('.circleise_image').on('load', function() {
-    var image = $(this);
-    image.wrap('<div class="circleise_outerdiv"><div class="circleise_innerdiv"></div></div>');
-    var innerdiv = image.parent('.circleise_innerdiv');
-    var outerdiv = innerdiv.parent('.circleise_outerdiv');
+$.fn.circleise_and_decircleise = function(options) {
 
-    image.css({
-      'max-width': '100%', 
-      'max-height': '100%'
-    });
+  var settings = $.extend({
+      // These are the defaults.
+      circleise_event: 'mouseout',
+      decircleise_event: 'mouseenter'
+  }, options);
 
-    outerdiv.css({
-      'width': image.width(),
-      'height': image.height(),
-      'padding': 0,
-      'margin': 'auto',
-      'overflow': 'hidden'
-    });
+  var image = $(this);
+  image.addClass('circleise_image');
+  image.wrap('<div class="circleise_outerdiv"><div class="circleise_innerdiv"></div></div>');
+  var innerdiv = image.parent('.circleise_innerdiv');
+  var outerdiv = innerdiv.parent('.circleise_outerdiv');
 
-    innerdiv.css({
-      'width': image.width(),
-      'height': image.height(),
-      'padding': 0,
-      'margin': 'auto',
-      'overflow': 'hidden',
-      'position': 'relative'
-    });
-
-    image.css({
-      'max-width': 'none',
-      'max-height': 'none',
-      'position': 'relative'
-    })
-
-    $('.circleise_innerdiv').on('mouseout', circleise);
-    $('.circleise_innerdiv').on('mouseenter', de_circleise);
-
-    innerdiv.trigger('mouseout');
+  image.css({
+    'max-width': '100%', 
+    'max-height': '100%'
   });
-})
+
+  outerdiv.css({
+    'width': image.width(),
+    'height': image.height(),
+    'padding': 0,
+    'margin': 'auto',
+    'overflow': 'hidden'
+  });
+
+  innerdiv.css({
+    'width': image.width(),
+    'height': image.height(),
+    'padding': 0,
+    'margin': 'auto',
+    'overflow': 'hidden',
+    'position': 'relative'
+  });
+
+  image.css({
+    'max-width': 'none',
+    'max-height': 'none',
+    'position': 'relative'
+  });
+
+  $('.circleise_innerdiv').on(settings.circleise_event, circleise_worker);
+  $('.circleise_innerdiv').on(settings.decircleise_event, decircleise_worker);
+
+  innerdiv.trigger('mouseout');
+
+  return $(this);
+};

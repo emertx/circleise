@@ -1,9 +1,16 @@
+jQUERY PLUGIN TO PLAY WITH IMAGES
+=================================
+
 Q: Wanna make your images appear circular and go back to their original shape based on events?  
 A: You have come to the right place :-D
 
+Working examples:  
+* [JSFiddle](http://jsfiddle.net/LtTD4/)
+* [JS Bin](http://jsbin.com/iRunOTAh/1/)
+
 All you need to do is: 
   
-* Include 'circleise_and_decircleise' in your html page    
+* Include 'circleise_and_decircleise.js' in your html page    
 * Call the function 'cirlceise_and_decircleise' on your image object
 
 Things to remember:
@@ -30,7 +37,7 @@ Example
   * on 'mouseenter' event, the image regains it original shape
 
     
-If you would like to dictate the events yourself, pass in an object
+If you would like to dictate the events yourself, pass in an options object
   
     $(document).ready(function() {
       $('#image_2').on('load', function() {
@@ -40,3 +47,5 @@ If you would like to dictate the events yourself, pass in an object
         });
       });
     });
+    
+HAVE FUN!!

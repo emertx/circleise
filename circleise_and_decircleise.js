@@ -91,24 +91,27 @@ $.fn.circleise_and_decircleise = function(options) {
   outerdiv.css({
     'width': image.width(),
     'height': image.height(),
+    'display': 'inline-block',
     'padding': 0,
-    'margin': 'auto',
-    'overflow': 'hidden'
+    'overflow': 'hidden',
+    'text-align': 'center'
   });
 
   innerdiv.css({
     'width': image.width(),
     'height': image.height(),
+    'display': 'inline-block',
     'padding': 0,
-    'margin': 'auto',
     'overflow': 'hidden',
+    'text-align': 'center',
     'position': 'relative'
   });
 
   image.css({
     'max-width': 'none',
     'max-height': 'none',
-    'position': 'relative'
+    'position': 'relative',
+    'margin': 0
   });
 
   $('.circleise_innerdiv').on(settings.circleise_event, circleise_worker);
